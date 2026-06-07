@@ -1,18 +1,18 @@
 # =====================================================================
-# Template skripsi KHUSUS Program Studi D-IV Komputasi Statistik
-# Politeknik Statistika STIS — mengikuti Pedoman Skripsi KS Edisi
-# Keenam (2025). Bukan untuk program studi lain.
+# Template laporan proyek Data Mining (CRISP-DM) - Politeknik Statistika STIS.
+# Prodi D-IV Komputasi Statistik (Data Mining) & D-IV Statistika
+# (Data Mining dan Big Data).
 # =====================================================================
 project:
   type: default
   output-dir: _output
   render:
-    - index.qmd   # hanya naskah skripsi yang dirender otomatis;
+    - index.qmd   # hanya naskah laporan yang dirender otomatis;
                   # 'referensi-perintah.qmd' dirender terpisah sesuai kebutuhan.
 
-# Metadata skripsi — diisi otomatis oleh buat_laporan(), boleh diedit manual.
+# Metadata laporan — diisi otomatis oleh buat_laporan(), boleh diedit manual.
 title: "Laporan Proyek Data Mining"
-author: "{{NAMA}}"
+author: "Kelompok {{KELOMPOK}}"
 date: "{{TAHUN}}"
 lang: id
 
@@ -48,7 +48,7 @@ format:
     classoption:
       - twoside        # tata letak bolak-balik (mirror margin)
       - openright      # setiap bab dimulai pada halaman ganjil (rekto)
-      - fleqn          # persamaan rata kiri (1 tab dari batas kiri), sesuai pedoman
+      - fleqn          # persamaan rata kiri (1 tab dari batas kiri), sesuai konvensi
     papersize: a4
     fontsize: 12pt
     pdf-engine: xelatex

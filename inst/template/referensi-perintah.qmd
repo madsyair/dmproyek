@@ -1,5 +1,5 @@
 ---
-title: "Referensi Perintah Penulisan Skripsi"
+title: "Referensi Perintah Penulisan Laporan"
 subtitle: "Quarto / R Markdown dan LaTeX — Template `dmproyek`"
 lang: id
 format:
@@ -23,7 +23,7 @@ monofont: "DejaVu Sans Mono"
 
 # Pendahuluan {#sec-intro}
 
-Dokumen ini merangkum **perintah yang dipakai dalam template skripsi `dmproyek`**,
+Dokumen ini merangkum **perintah yang dipakai dalam template laporan `dmproyek`**,
 mencakup dua lapis:
 
 1. **Quarto / R Markdown** — sintaks dokumen, *chunk* kode, opsi gambar/tabel,
@@ -36,9 +36,9 @@ Setiap entri disertai **contoh penggunaan** dan **keterangan singkat**. Perintah
 ditandai *(template)* adalah perintah khusus yang sudah disiapkan pada
 `tex/preamble.tex` atau berkas template.
 
-> **Cara merender dokumen ini:** dari dalam folder proyek skripsi, jalankan
+> **Cara merender dokumen ini:** dari dalam folder proyek laporan, jalankan
 > `quarto render referensi-perintah.qmd`. Dokumen ini sengaja dipisah dari naskah
-> skripsi sehingga tidak ikut tergabung saat `quarto render` proyek.
+> laporan sehingga tidak ikut tergabung saat `quarto render` proyek.
 
 # Quarto / R Markdown
 
@@ -61,7 +61,7 @@ Metadata dokumen ditulis di antara dua `---` pada awal berkas.
 
 ``` yaml
 ---
-title: "Judul Skripsi"
+title: "Judul Laporan"
 lang: id
 format:
   pdf:
@@ -157,7 +157,7 @@ $$ {#eq-f1}
 ```
 
 Pada template, persamaan blok otomatis **rata kiri 1 tab** (opsi kelas `fleqn`) dengan
-nomor rata kanan, sesuai pedoman.
+nomor rata kanan, sesuai konvensi.
 
 ## Teorema, Definisi, dan Bukti
 
@@ -286,7 +286,7 @@ library(kableExtra)
 kbl(df, format = "latex", longtable = TRUE, booktabs = TRUE,
     col.names = c("No.", "Wilayah", "Jumlah", "Persen"), align = "clrr") |>
   kable_styling(
-    font_size = 8,                      # huruf minimum 8 pt (pedoman)
+    font_size = 8,                      # huruf minimum 8 pt (konvensi)
     latex_options = "repeat_header",    # judul kolom berulang tiap halaman
     repeat_header_text = "(lanjutan)"   # keterangan "(lanjutan)"
   )

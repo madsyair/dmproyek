@@ -1,6 +1,6 @@
 % ============================================================
-%  Preamble format Skripsi Politeknik Statistika STIS
-%  Disesuaikan dengan Pedoman Skripsi KS Edisi Keenam (2025)
+%  Preamble format Laporan Proyek Data Mining Politeknik Statistika STIS
+%  Mengikuti konvensi penulisan laporan akademik Politeknik Statistika STIS
 %  Engine: XeLaTeX (fontspec)
 % ============================================================
 
@@ -15,7 +15,7 @@
 \usepackage[a4paper,inner=4cm,top=3cm,outer=3cm,bottom=3cm]{geometry}
 
 % --- Spasi: default dokumen 1,5 (dipakai halaman muka, daftar, dan daftar
-%     pustaka). TEKS ISI (Bab I dst.) diset 2 spasi sesuai pedoman hlm. 34
+%     pustaka). TEKS ISI (Bab I dst.) diset 2 spasi sesuai konvensi penulisan
 %     melalui \doublespacing di awal bagian isi (lihat index.qmd). ---
 \usepackage{setspace}
 \onehalfspacing
@@ -25,7 +25,7 @@
 \setlength{\parindent}{1.27cm} % indentasi 1,27 cm (0,5 inci)
 \setlength{\mathindent}{1.27cm} % persamaan (fleqn) menjorok 1 tab dari batas kiri
 
-% --- Dukungan tabel sesuai pedoman ---
+% --- Dukungan tabel sesuai konvensi ---
 \usepackage{float}        % opsi penempatan [H]
 \usepackage{booktabs}     % garis tabel rapi (toprule/midrule/bottomrule)
 \usepackage{longtable}    % tabel lintas-halaman ("Tabel X (lanjutan)")
@@ -49,29 +49,29 @@
 % - Gambar: Quarto membungkus dengan \pandocbounded sehingga otomatis menyusut bila
 %   lebih lebar dari teks; atur ukuran sumber lewat fig.width/fig.height (lihat index.qmd).
 % - Tabel lebar: gunakan kolom 'X' (tabularx), kableExtra column_spec(width=...),
-%   atau putar ke landscape. Jangan memperkecil huruf < 8 pt (pedoman).
+%   atau putar ke landscape. Jangan memperkecil huruf < 8 pt (konvensi).
 % - Rumus panjang: penggal manual dgn aligned/split/multline (operator di AWAL baris lanjutan).
 
 % --- Penomoran & gaya judul bab/subbab (Times, tebal) ---
 %     Judul bab tampil "BAB I, BAB II, ..." (Romawi besar), tetapi penomoran
 %     subbab tetap memakai angka Arab dengan pemisah titik (1.1, 1.2, 2.1, ...)
-%     sesuai pedoman hlm. 34-35. Karena itu counter chapter dibiarkan Arab,
+%     sesuai konvensi penulisan. Karena itu counter chapter dibiarkan Arab,
 %     dan Romawi hanya ditampilkan pada JUDUL bab.
 \usepackage{titlesec}
 \renewcommand{\chaptername}{BAB}
-% Judul bab/subbab diketik 1 spasi (pedoman): bungkus dengan \singlespacing.
+% Judul bab/subbab diketik 1 spasi (konvensi): bungkus dengan \singlespacing.
 \titleformat{\chapter}[display]
   {\normalfont\bfseries\centering\singlespacing}
   {\MakeUppercase{\chaptername}\ \Roman{chapter}}{0pt}
   {\MakeUppercase}
-% Jarak judul bab ke teks/subbab di bawahnya ~3-4 spasi (lihat pedoman hlm. 34)
+% Jarak judul bab ke teks/subbab di bawahnya ~3-4 spasi (lihat konvensi penulisan)
 \titlespacing*{\chapter}{0pt}{0pt}{2\baselineskip}
 \titleformat{\section}{\normalfont\bfseries\singlespacing}{\thesection}{1em}{}
 \titleformat{\subsection}{\normalfont\bfseries\singlespacing}{\thesubsection}{1em}{}
-% Judul level ke-4 (####) tidak bernomor (number-depth:3) -> cukup TEBAL (pedoman
+% Judul level ke-4 (####) tidak bernomor (number-depth:3) -> cukup TEBAL (konvensi
 % hlm. 35), tanpa miring.
 \titleformat{\subsubsection}{\normalfont\bfseries\singlespacing}{\thesubsubsection}{1em}{}
-% Jarak sub bab dengan teks ~3 spasi (pedoman hlm. 34). Di bawah \doublespacing
+% Jarak sub bab dengan teks ~3 spasi (konvensi penulisan). Di bawah \doublespacing
 % pada teks isi, 1,5\baselineskip ~= 3 baris tunggal. (Perkiraan; cek saat render.)
 \titlespacing*{\section}{0pt}{1.5\baselineskip}{1.5\baselineskip}
 \titlespacing*{\subsection}{0pt}{1.5\baselineskip}{1.5\baselineskip}
@@ -93,8 +93,8 @@
 
 % --- Penomoran bab Romawi (BAB I) untuk JUDUL & DAFTAR ISI, dan Arab untuk
 %     subbab (mis. 1.1, 1.1.1). TABEL, GAMBAR, dan PERSAMAAN memakai nomor urut
-%     TUNGGAL berjalan di seluruh skripsi (Tabel 1, 2, 3, ...; Gambar 1, 2, ...;
-%     persamaan (1), (2), ...) sesuai pedoman hlm. 5 & 8 (bukan per-bab 4.1).
+%     TUNGGAL berjalan di seluruh laporan (Tabel 1, 2, 3, ...; Gambar 1, 2, ...;
+%     persamaan (1), (2), ...) sesuai konvensi penulisan & 8 (bukan per-bab 4.1).
 %     Diletakkan pada \AtBeginDocument agar menimpa definisi bawaan Quarto.
 \AtBeginDocument{%
   \renewcommand{\thechapter}{\Roman{chapter}}%
@@ -125,13 +125,13 @@
 \renewcommand{\figurename}{Gambar}
 
 % --- Caption tabel/gambar (Times); judul tabel di ATAS, judul gambar di BAWAH.
-%     Judul tabel/gambar yang lebih dari satu baris diketik 1 spasi (pedoman). ---
+%     Judul tabel/gambar yang lebih dari satu baris diketik 1 spasi (konvensi). ---
 \usepackage{caption}
 \captionsetup{font={normalsize,stretch=1.0},labelsep=period,justification=raggedright,singlelinecheck=false,format=hang}
 \captionsetup[table]{position=top}
 \captionsetup[figure]{position=bottom}
 
-% --- Tata letak float (pedoman): tabel/gambar SELALU rata tengah dan berjarak
+% --- Tata letak float (konvensi): tabel/gambar SELALU rata tengah dan berjarak
 %     ~3 spasi dari teks di atas/bawahnya. Nilai \intextsep dll. di bawah
 %     dihitung saat 1,5 spasi; karena teks isi kini 2 spasi, jaraknya hanya
 %     mendekati 3 spasi — sesuaikan bila perlu setelah render. ---
@@ -147,7 +147,7 @@
 
 % --- Nomor halaman:
 %     bagian awal  -> angka Romawi kecil, TENGAH bawah  (gaya 'plain' bawaan)
-%     bagian isi   -> angka Arab, di KANAN bawah (pedoman hlm. 1), berlaku pada
+%     bagian isi   -> angka Arab, di KANAN bawah (konvensi penulisan), berlaku pada
 %                     halaman ganjil maupun genap.
 %     Karena \chapter memanggil \thispagestyle{plain}, kita sediakan
 %     perintah \aktifkanNomorIsi yang mendefinisikan ulang 'plain' agar
@@ -156,7 +156,7 @@
 \fancypagestyle{isistis}{%
   \fancyhf{}%
   \renewcommand{\headrulewidth}{0pt}%
-  \fancyfoot[R]{\thepage}%  bagian isi: angka Arab di tepi kanan bawah (pedoman hlm. 1)
+  \fancyfoot[R]{\thepage}%  bagian isi: angka Arab di tepi kanan bawah (konvensi penulisan)
 }
 \newcommand{\aktifkanNomorIsi}{%
   \fancypagestyle{plain}{%
@@ -221,7 +221,7 @@
 
 % --- Halaman genap yang tersisip otomatis (akibat openright/twoside)
 %     diberi keterangan "Halaman ini sengaja dikosongkan" di tengah,
-%     sesuai konvensi pedoman. Mendefinisikan ulang \cleardoublepage. ---
+%     sesuai konvensi konvensi. Mendefinisikan ulang \cleardoublepage. ---
 \renewcommand{\cleardoublepage}{%
   \clearpage
   \ifodd\value{page}\else
@@ -306,5 +306,5 @@
 \SetKw{KwRet}{kembalikan}
 \SetKw{Return}{kembalikan}
 % Penomoran algoritme: deret tunggal (Algoritme 1, 2, ...) agar konsisten
-% dengan tabel/gambar/persamaan. (Pedoman tidak mengatur algoritme.)
+% dengan tabel/gambar/persamaan. (konvensi penulisan)
 \renewcommand{\thealgocf}{\arabic{algocf}}
