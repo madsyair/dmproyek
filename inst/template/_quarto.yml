@@ -1,0 +1,71 @@
+# =====================================================================
+# Template skripsi KHUSUS Program Studi D-IV Komputasi Statistik
+# Politeknik Statistika STIS — mengikuti Pedoman Skripsi KS Edisi
+# Keenam (2025). Bukan untuk program studi lain.
+# =====================================================================
+project:
+  type: default
+  output-dir: _output
+  render:
+    - index.qmd   # hanya naskah skripsi yang dirender otomatis;
+                  # 'referensi-perintah.qmd' dirender terpisah sesuai kebutuhan.
+
+# Metadata skripsi — diisi otomatis oleh buat_laporan(), boleh diedit manual.
+title: "Laporan Proyek Data Mining"
+author: "{{NAMA}}"
+date: "{{TAHUN}}"
+lang: id
+
+bibliography: referensi.bib
+csl: apa-stis-id.csl
+
+crossref:
+  fig-prefix: "Gambar"
+  tbl-prefix: "Tabel"
+  eq-prefix: "Persamaan"
+  sec-prefix: "Subbab"
+  # Lingkungan matematika (judul + awalan rujukan dalam bahasa Indonesia)
+  thm-prefix: "Teorema"
+  lem-prefix: "Lema"
+  cor-prefix: "Akibat"
+  prp-prefix: "Proposisi"
+  cnj-prefix: "Konjektur"
+  def-prefix: "Definisi"
+  exm-prefix: "Contoh"
+  exr-prefix: "Latihan"
+  thm-title: "Teorema"
+  lem-title: "Lema"
+  cor-title: "Akibat"
+  prp-title: "Proposisi"
+  cnj-title: "Konjektur"
+  def-title: "Definisi"
+  exm-title: "Contoh"
+  exr-title: "Latihan"
+
+format:
+  pdf:
+    documentclass: report
+    classoption:
+      - twoside        # tata letak bolak-balik (mirror margin)
+      - openright      # setiap bab dimulai pada halaman ganjil (rekto)
+      - fleqn          # persamaan rata kiri (1 tab dari batas kiri), sesuai pedoman
+    papersize: a4
+    fontsize: 12pt
+    pdf-engine: xelatex
+    toc: false                # Daftar Isi disisipkan manual (lihat index.qmd)
+    number-sections: true
+    number-depth: 3
+    fig-pos: "H"
+    code-overflow: wrap       # lipat baris kode panjang agar tidak menembus margin kanan
+    link-citations: true
+    keep-tex: true
+    # Daftar Isi bisa menjadi 2 halaman sehingga paginasi bergeser; paksa cukup
+    # lintasan LaTeX agar nomor halaman pada Daftar Isi/Tabel/Gambar/Lampiran konvergen.
+    latex-min-runs: 4
+    include-in-header:
+      - tex/preamble.tex
+    include-before-body:
+      - tex/00_frontmatter.tex
+
+# Bibliografi diletakkan manual sebelum Lampiran (div #refs di index.qmd)
+citeproc: true

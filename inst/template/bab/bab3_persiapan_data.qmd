@@ -1,0 +1,32 @@
+# PERSIAPAN DATA
+
+::: {.callout-tip title="Petunjuk Penulisan  -  Persiapan Data" appearance="simple"}
+Tahap **Data Preparation**: seleksi, pembersihan, transformasi, integrasi, dan
+pembentukan fitur (*feature engineering*) hingga data siap dimodelkan. Tahap ini
+umumnya paling memakan waktu pada CRISP-DM. **Hapus kotak "Petunjuk Penulisan" pada
+naskah final.**
+:::
+
+## Seleksi Data
+
+Tetapkan variabel dan observasi yang dipakai beserta alasannya.
+
+## Pembersihan Data
+
+Jelaskan penanganan data hilang, pencilan, dan duplikasi (mis. imputasi,
+penghapusan, atau winsorisasi).
+
+## Transformasi dan Pembentukan Fitur
+
+Uraikan transformasi yang dilakukan: penyandian (*encoding*) variabel kategorik,
+penskalaan/normalisasi variabel numerik, serta pembentukan fitur baru bila ada.
+
+## Penanganan Ketidakseimbangan Kelas
+
+Bila target tidak seimbang, jelaskan teknik yang dipakai (mis. SMOTE,
+*undersampling*, atau pembobotan kelas).
+
+## Pembagian Data
+
+Jelaskan skema pembagian data latih dan uji (mis. 80:20) serta penggunaan validasi
+silang (*k-fold cross-validation*) untuk penyetelan parameter.

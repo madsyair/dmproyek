@@ -1,0 +1,43 @@
+```{=latex}
+\appendix
+\renewcommand{\chaptername}{LAMPIRAN}
+```
+
+# LAMPIRAN {.unnumbered}
+
+::: {.callout-tip title="Petunjuk Penulisan  -  Lampiran" appearance="simple"}
+Lampiran memuat materi pendukung yang terlalu panjang untuk badan teks: sintaks/kode
+program lengkap, keluaran tambahan, tabel besar, atau dokumentasi data. Setiap lampiran
+didaftarkan otomatis ke **Daftar Lampiran** melalui perintah `\lampiran{...}`. **Hapus
+kotak "Petunjuk Penulisan" pada naskah final.**
+:::
+
+```{=latex}
+\lampiran{Sintaks Program}
+```
+
+**Lampiran 1.** Sintaks Program
+
+Sertakan kode program (R/Python) yang dipakai pada tiap tahap CRISP-DM. Contoh
+menampilkan kode tanpa menjalankannya:
+
+```r
+library(tidymodels)
+set.seed(123)
+split <- initial_split(data, prop = 0.8, strata = status)
+latih <- training(split); uji <- testing(split)
+model <- rand_forest(trees = 500) |>
+  set_engine("ranger") |>
+  set_mode("classification") |>
+  fit(status ~ ., data = latih)
+```
+
+```{=latex}
+\lampiran{Keluaran dan Tabel Tambahan}
+```
+
+**Lampiran 2.** Keluaran dan Tabel Tambahan
+
+Sertakan keluaran tambahan yang relevan (mis. *confusion matrix* lengkap, tabel
+kepentingan variabel, atau hasil penyetelan parameter) yang tidak ditampilkan penuh
+pada badan laporan.

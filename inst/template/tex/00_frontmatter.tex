@@ -1,0 +1,45 @@
+% ============================================================
+%  Halaman muka Laporan Proyek Data Mining (CRISP-DM)
+%  HANYA Sampul (cover tunggal). Spasi dirapatkan agar daftar
+%  anggota hingga 7 orang + dosen pengampu tetap muat satu halaman.
+%  Token {{...}} diganti otomatis oleh buat_laporan().
+% ============================================================
+\begin{titlepage}
+\pagenumbering{gobble}
+\singlespacing
+
+% ---------- HALAMAN SAMPUL ----------
+\begin{center}
+  \vspace*{0.2cm}
+  {\bfseries\fontsize{14}{17}\selectfont \MakeUppercase{{{JUDUL}}}\par}
+  {{SUBJUDUL_BLOCK}}
+  \vspace{0.5cm}
+
+  {\bfseries\fontsize{12}{15}\selectfont LAPORAN PROYEK\par}
+  {\bfseries\fontsize{12}{15}\selectfont MATA KULIAH \MakeUppercase{{{MATA_KULIAH}}}\par}
+  \vspace{0.6cm}
+
+  {\bfseries Oleh:\par}
+  \vspace{0.2cm}
+  {\bfseries\fontsize{12}{15}\selectfont KELOMPOK {{KELOMPOK}}\par}
+  {\bfseries Kelas: {{KELAS}}\par}
+  \vspace{0.3cm}
+  % Daftar anggota (3-7 orang); spasi antar-baris dirapatkan.
+  {\bfseries\setlength{\tabcolsep}{6pt}\renewcommand{\arraystretch}{1.05}{{ANGGOTA_BLOCK}}\par}
+  \vspace{0.35cm}
+
+  {\bfseries Dosen Pengampu:\par}
+  {\bfseries\fontsize{12}{15}\selectfont {{DOSEN}}\par}
+
+  \vfill
+  \IfFileExists{img/logo_stis.png}{\includegraphics[width=3.8cm,height=3.8cm,keepaspectratio]{img/logo_stis.png}\par}{\rule{0pt}{3.8cm}\par}
+  \vspace{0.4cm}
+
+  {\bfseries\fontsize{13}{16}\selectfont PROGRAM STUDI {{PRODI}}\par}
+  {\bfseries\fontsize{13}{16}\selectfont PROGRAM DIPLOMA IV\par}
+  {\bfseries\fontsize{14}{17}\selectfont POLITEKNIK STATISTIKA STIS\par}
+  {\bfseries\fontsize{14}{17}\selectfont JAKARTA\par}
+  {\bfseries\fontsize{14}{17}\selectfont {{TAHUN}}\par}
+\end{center}
+\clearpage
+\end{titlepage}

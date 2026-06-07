@@ -1,0 +1,21 @@
+# PENERAPAN DAN KESIMPULAN
+
+::: {.callout-tip title="Petunjuk Penulisan  -  Penerapan dan Kesimpulan" appearance="simple"}
+Tahap **Deployment** beserta penutup: rencana penerapan model/temuan, lalu kesimpulan
+yang menjawab tujuan dan saran untuk pengembangan selanjutnya. **Hapus kotak "Petunjuk
+Penulisan" pada naskah final.**
+:::
+
+## Rencana Penerapan
+
+Jelaskan rencana penerapan hasil proyek (mis. integrasi ke dasbor, prosedur
+penggunaan model, pemantauan kinerja, dan pemeliharaan model).
+
+## Kesimpulan
+
+Tuliskan simpulan ringkas yang menjawab tujuan proyek berdasarkan hasil pemodelan
+dan evaluasi.
+
+## Saran
+
+Sampaikan saran untuk perbaikan data, metode, atau penerapan pada proyek lanjutan.

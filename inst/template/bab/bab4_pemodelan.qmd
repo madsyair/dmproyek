@@ -1,0 +1,33 @@
+# PEMODELAN
+
+::: {.callout-tip title="Petunjuk Penulisan  -  Pemodelan" appearance="simple"}
+Tahap **Modeling**: pemilihan teknik/algoritme, rancangan pengujian, pembangunan
+model, dan penyetelan parameter. Jelaskan pula asumsi dan alasan pemilihan teknik.
+**Hapus kotak "Petunjuk Penulisan" pada naskah final.**
+:::
+
+## Pemilihan Teknik
+
+Sebutkan algoritme yang dibandingkan (mis. *Decision Tree*, *Random Forest*,
+*Support Vector Machine*) dan dasar pemilihannya.
+
+## Rancangan Pengujian
+
+Tetapkan metrik dan skema validasi. Ukuran kinerja klasifikasi yang umum adalah
+akurasi pada @eq-akurasi dan *F1-score* pada @eq-f1.
+
+$$
+\text{akurasi} = \frac{TP + TN}{TP + TN + FP + FN}
+$$ {#eq-akurasi}
+
+$$
+F_1 = 2 \times \frac{\text{precision} \times \text{recall}}{\text{precision} + \text{recall}}
+$$ {#eq-f1}
+
+dengan $TP$, $TN$, $FP$, dan $FN$ berturut-turut menyatakan *true positive*,
+*true negative*, *false positive*, dan *false negative*.
+
+## Pembangunan Model
+
+Uraikan proses pelatihan model, nilai parameter yang dicoba, dan hasil penyetelan
+parameter terbaik.

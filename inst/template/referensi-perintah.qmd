@@ -1,0 +1,376 @@
+---
+title: "Referensi Perintah Penulisan Skripsi"
+subtitle: "Quarto / R Markdown dan LaTeX — Template `dmproyek`"
+lang: id
+format:
+  pdf:
+    documentclass: article
+    papersize: a4
+    fontsize: 11pt
+    pdf-engine: xelatex
+    geometry:
+      - margin=2.5cm
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    colorlinks: true
+    code-block-bg: true
+    code-block-border-left: "#cccccc"
+    highlight-style: github
+mainfont: "TeX Gyre Termes"
+monofont: "DejaVu Sans Mono"
+---
+
+# Pendahuluan {#sec-intro}
+
+Dokumen ini merangkum **perintah yang dipakai dalam template skripsi `dmproyek`**,
+mencakup dua lapis:
+
+1. **Quarto / R Markdown** — sintaks dokumen, *chunk* kode, opsi gambar/tabel,
+   rujukan silang, kutipan, *callout*, dan struktur berkas proyek.
+2. **LaTeX** — perintah mentah (raw) yang disisipkan lewat blok ```` ```{=latex} ````
+   untuk hal-hal yang tidak ditangani Quarto: halaman muka, daftar lampiran,
+   tabel/gambar landscape, dan tabel panjang lintas-halaman.
+
+Setiap entri disertai **contoh penggunaan** dan **keterangan singkat**. Perintah yang
+ditandai *(template)* adalah perintah khusus yang sudah disiapkan pada
+`tex/preamble.tex` atau berkas template.
+
+> **Cara merender dokumen ini:** dari dalam folder proyek skripsi, jalankan
+> `quarto render referensi-perintah.qmd`. Dokumen ini sengaja dipisah dari naskah
+> skripsi sehingga tidak ikut tergabung saat `quarto render` proyek.
+
+# Quarto / R Markdown
+
+## Struktur Berkas Proyek {#sec-struktur}
+
+| Berkas/Folder | Fungsi |
+|---|---|
+| `_quarto.yml` | Konfigurasi proyek: format PDF, *crossref*, metadata, daftar render. |
+| `index.qmd` | Naskah utama: halaman muka, abstrak, daftar, lalu `{{{< include >}}}` tiap bab. |
+| `bab/babN_*.qmd` | Isi tiap bab (disisipkan ke `index.qmd`). |
+| `referensi.bib` | Basis data pustaka (format BibTeX) untuk sitasi. |
+| `apa-stis-id.csl` | Gaya sitasi APA 7 modifikasi Indonesia. |
+| `tex/preamble.tex` | Perintah LaTeX kustom (font, margin, judul bab, daftar lampiran). |
+| `tex/00_frontmatter.tex` | Halaman sampul, pernyataan, pengesahan, hak cipta. |
+| `img/` | Berkas gambar (PNG/PDF) yang disisipkan. |
+
+## Header YAML
+
+Metadata dokumen ditulis di antara dua `---` pada awal berkas.
+
+``` yaml
+---
+title: "Judul Skripsi"
+lang: id
+format:
+  pdf:
+    documentclass: report
+    fontsize: 12pt
+---
+```
+
+## Menyisipkan Berkas Lain
+
+``` markdown
+{{{< include bab/bab1_pendahuluan.qmd >}}}
+```
+
+Menggabungkan isi berkas lain ke dokumen induk. Dipakai `index.qmd` untuk merangkai bab.
+
+## Pemformatan Teks Dasar
+
+| Sintaks | Hasil |
+|---|---|
+| `*miring*` atau `_miring_` | *miring* (italic) |
+| `**tebal**` | **tebal** (bold) |
+| `` `kode` `` | `kode` (monospace) |
+| `# Judul` | Judul bab (level 1) |
+| `## Subjudul` | Subbab (level 2) |
+| `### Sub-subjudul` | Sub-subbab (level 3) |
+| `> teks` | Kutipan blok |
+| `1. item` | Daftar bernomor |
+| `- item` | Daftar berbutir |
+| `[teks](url)` | Tautan |
+
+Atribut khusus pada judul:
+
+``` markdown
+# DAFTAR PUSTAKA {.unnumbered}
+```
+
+`.unnumbered` membuat judul tidak diberi nomor bab (dipakai untuk Prakata, Abstrak,
+Daftar Pustaka, Lampiran, Riwayat Hidup).
+
+## Chunk Kode R
+
+```{{r}}
+#| label: fig-contoh
+#| fig-cap: "Judul gambar"
+#| echo: false
+plot(1:10)
+```
+
+Opsi *chunk* yang sering dipakai (ditulis dengan `#|`):
+
+| Opsi | Fungsi |
+|---|---|
+| `label:` | Label unik; awalan menentukan jenis: `fig-`, `tbl-`. |
+| `fig-cap:` | Judul (caption) gambar. |
+| `tbl-cap:` | Judul (caption) tabel. |
+| `echo: false` | Sembunyikan kode, tampilkan hasil. |
+| `eval: false` | Tampilkan kode tetapi jangan dijalankan. |
+| `results: asis` | Keluaran mentah (mis. hasil `cat()` LaTeX). |
+| `fig-width:` / `fig-height:` | Ukuran gambar dalam inci. |
+| `warning: false` / `message: false` | Sembunyikan peringatan/pesan. |
+
+Chunk **Python** ditulis ```` ```{python} ````; pada template, contoh Python ditulis
+sebagai blok statis (```` ```python ````) agar dokumen tetap dapat dirender tanpa
+`reticulate`.
+
+## Rujukan Silang (*Cross-reference*)
+
+Beri label berawalan jenis, lalu rujuk dengan `@`.
+
+| Penanda | Rujukan | Hasil (prefiks dari `_quarto.yml`) |
+|---|---|---|
+| `#fig-x` | `@fig-x` | Gambar N |
+| `#tbl-x` | `@tbl-x` | Tabel N |
+| `#eq-x` | `@eq-x` | Persamaan (N) |
+| `#def-x` | `@def-x` | Definisi N |
+| `#thm-x` | `@thm-x` | Teorema N |
+
+> Catatan: rujukan silang `@...` bekerja untuk objek yang dibuat **oleh Quarto**.
+> Untuk objek yang dibuat dengan **raw LaTeX** (mis. `sidewaysfigure`, `longtable`,
+> diagram TikZ), gunakan `\label{...}` dan rujuk dengan `\ref{...}` (lihat
+> @sec-latex-ref).
+
+## Persamaan Matematika
+
+``` markdown
+Sebaris: $y = a + bx$.
+
+Blok bernomor:
+$$
+F_1 = 2 \cdot \frac{\text{precision} \cdot \text{recall}}{\text{precision} + \text{recall}}
+$$ {#eq-f1}
+```
+
+Pada template, persamaan blok otomatis **rata kiri 1 tab** (opsi kelas `fleqn`) dengan
+nomor rata kanan, sesuai pedoman.
+
+## Teorema, Definisi, dan Bukti
+
+``` markdown
+::: {#def-pmt}
+**(Proxy Means Test).** Misalkan $y_i$ ... fungsi prediksi $\hat{f}$.
+:::
+
+::: {#thm-takbias}
+Pada model linear ... penduga kuadrat terkecil bersifat takbias.
+:::
+
+::: {.proof}
+Substitusi ... $\qed$
+:::
+```
+
+Lingkungan `#def-...`, `#thm-...`, `#lem-...`, dll. otomatis bernomor dan dapat dirujuk.
+
+## Kutipan dan Daftar Pustaka
+
+Kelola sumber di `referensi.bib`, lalu sitasi di naskah:
+
+| Sintaks | Hasil |
+|---|---|
+| `[@kunci]` | (Nama dkk., tahun) — kutipan dalam kurung |
+| `@kunci` | Nama dkk. (tahun) — kutipan naratif |
+| `[@a; @b]` | gabungan beberapa sumber |
+| `[@kunci, hlm. 21]` | dengan nomor halaman |
+
+Daftar Pustaka terisi otomatis dari sumber yang dikutip melalui blok:
+
+``` markdown
+::: {#refs}
+:::
+```
+
+## Callout (Kotak Petunjuk)
+
+``` markdown
+::: {.callout-note title="Judul" appearance="simple"}
+Isi catatan.
+:::
+```
+
+Jenis: `callout-note` (biru), `callout-tip` (hijau), `callout-warning`,
+`callout-important`, `callout-caution`. Pada template dipakai sebagai **"Petunjuk
+Penulisan"** dan dihapus pada naskah final.
+
+## Konten Khusus Format
+
+``` markdown
+::: {.content-visible when-format="pdf"}
+Hanya muncul pada keluaran PDF.
+:::
+```
+
+# LaTeX (disisipkan lewat blok `{=latex}`) {#sec-latex}
+
+Perintah LaTeX mentah ditulis di antara pembuka ```` ```{=latex} ```` dan penutup
+```` ``` ````. Pada contoh-contoh di bawah, **hanya isi LaTeX**-nya yang ditampilkan;
+bungkus tiap contoh dengan blok `{=latex}` saat menyalin ke naskah.
+
+## Rujukan Silang Manual {#sec-latex-ref}
+
+``` latex
+\label{fig-flowchart}      % beri label pada objek raw-LaTeX
+Gambar \ref{fig-flowchart} % rujuk nomornya
+```
+
+Dipakai untuk objek yang dibuat dengan raw LaTeX (TikZ, `sidewaysfigure`, `longtable`).
+
+## Perintah Pengaturan Spasi & Halaman
+
+| Perintah | Fungsi |
+|---|---|
+| `\clearpage` | Pindah ke halaman baru. |
+| `\cleardoublepage` | Pindah ke halaman ganjil berikutnya; halaman genap kosong otomatis diberi keterangan *"Halaman ini sengaja dikosongkan"* *(template)*. |
+| `\vspace{2\baselineskip}` | Spasi vertikal (≈ 2 baris). |
+| `\vspace*{\fill}` | Spasi elastis (mendorong isi ke tengah/bawah). |
+| `\singlespacing` / `\onehalfspacing` | Spasi 1 / 1,5 (paket `setspace`). |
+| `\begin{singlespace}...\end{singlespace}` | Blok 1 spasi (mis. abstrak). |
+| `\noindent` | Paragraf tanpa indentasi awal. |
+| `\hangindent=2.5cm` | Indentasi gantung (mis. "Kata Kunci:"). |
+
+## Perintah Khusus Template *(template)*
+
+| Perintah | Fungsi |
+|---|---|
+| `\lampiran{Judul Lampiran}` | Mendaftarkan satu lampiran ke **Daftar Lampiran** secara otomatis (penomoran berurut). |
+| `\aktifkanNomorIsi` | Mengubah penomoran halaman ke angka Arab dan posisi sisi luar; dipanggil sekali sebelum Bab I. |
+| `\listoflampiran` | Mencetak halaman Daftar Lampiran. |
+
+Contoh penggunaan `\lampiran` (di dalam blok `{=latex}`), diikuti judul dan isi lampiran:
+
+``` latex
+\lampiran{Sintaks Pengolahan Data}
+```
+
+Lalu pada baris berikutnya (markdown biasa): `**Lampiran 1.** Sintaks Pengolahan Data`
+dan isi lampiran.
+
+## Tabel/Gambar Melebar (Landscape)
+
+Di dalam blok `{=latex}`:
+
+``` latex
+\begin{sidewaysfigure}
+\centering
+\includegraphics[width=0.95\textheight]{figure/diagram.pdf}
+\caption{Judul gambar melebar}
+\label{fig-landscape}
+\end{sidewaysfigure}
+```
+
+`sidewaysfigure` / `sidewaystable` (paket `rotating`) memutar isi **beserta caption**
+90°; arah putar otomatis menyesuaikan halaman ganjil/genap. Alternatif `landscape`
+(paket `pdflscape`) memutar halaman PDF-nya.
+
+## Tabel Panjang Lintas-Halaman
+
+Cara yang dianjurkan memakai **kableExtra** di dalam chunk R:
+
+``` r
+library(kableExtra)
+kbl(df, format = "latex", longtable = TRUE, booktabs = TRUE,
+    col.names = c("No.", "Wilayah", "Jumlah", "Persen"), align = "clrr") |>
+  kable_styling(
+    font_size = 8,                      # huruf minimum 8 pt (pedoman)
+    latex_options = "repeat_header",    # judul kolom berulang tiap halaman
+    repeat_header_text = "(lanjutan)"   # keterangan "(lanjutan)"
+  )
+```
+
+## Halaman Muka (Frontmatter)
+
+Perintah pembentuk halaman judul, pernyataan, pengesahan, dan hak cipta berada di
+`tex/00_frontmatter.tex`. Perintah LaTeX utama yang dipakai:
+
+| Perintah | Fungsi |
+|---|---|
+| `\begin{titlepage}...\end{titlepage}` | Lingkungan halaman judul (tanpa nomor halaman). |
+| `\begin{center}...\end{center}` | Rata tengah (judul, nama, "Tim Penguji"). |
+| `\fbox{\begin{minipage}{...}...\end{minipage}}` | Kotak proporsional (lembar hak cipta). |
+| `\begin{enumerate}[label=\alph*.]` | Daftar bernomor huruf (a., b.) — paket `enumitem`. |
+| `\textbf{...}`, `\textit{...}`, `\itshape` | Tebal / miring. |
+| `\textcopyright` | Simbol ©. |
+| `\rule{...}{...}` / `\hrulefill` | Garis (mis. ruang tanda tangan). |
+
+## Daftar Perintah Penataan (Preamble) *(template)*
+
+Perintah berikut sudah diatur pada `tex/preamble.tex`; **tidak perlu ditulis ulang**,
+tetapi berguna untuk diketahui bila ingin menyesuaikan:
+
+| Perintah | Pengaturan pada template |
+|---|---|
+| `\setmainfont{TeX Gyre Termes}` | Font utama (klon Times New Roman). |
+| `\geometry{inner=4cm,top=3cm,outer=3cm,bottom=3cm}` | Margin bolak-balik (dalam 4, luar 3). |
+| `\setlength{\parindent}{1.27cm}` | Indentasi paragraf 1 tab. |
+| `\setlength{\mathindent}{1.27cm}` | Indentasi persamaan (`fleqn`). |
+| `\titleformat{\chapter}...` | Judul bab "BAB I" tebal, rata tengah, 1 spasi. |
+| `\captionsetup[table]{position=top}` | Judul tabel di atas. |
+| `\captionsetup[figure]{position=bottom}` | Judul gambar di bawah. |
+| `\setlength{\intextsep}{3\baselineskip}` | Jarak ±3 spasi tabel/gambar dengan teks. |
+
+# Diagram dengan TikZ {#sec-tikz}
+
+Template menyediakan gaya siap pakai untuk **diagram alir** dan **use case diagram**
+(lihat `tex/preamble.tex`).
+
+## Diagram Alir (Flowchart)
+
+Di dalam blok `{=latex}`:
+
+``` latex
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[node distance=1.1cm and 1.6cm]
+  \node[fc-mulai]                  (a) {Mulai};
+  \node[fc-proses, below=of a]     (b) {Proses};
+  \node[fc-putusan, below=of b]    (c) {Keputusan?};
+  \draw[fc-panah] (a) -- (b);
+  \draw[fc-panah] (b) -- (c);
+\end{tikzpicture}
+\caption{Diagram alir}
+\label{fig-alir}
+\end{figure}
+```
+
+Gaya simpul *(template)*: `fc-mulai` (terminator), `fc-proses` (proses),
+`fc-io` (input/output), `fc-putusan` (keputusan), `fc-panah` (panah alur).
+
+## Use Case Diagram
+
+Gaya *(template)*: `uc-aktor` (aktor *stick figure*, dipakai sebagai `\pic`),
+`uc-case` (elips use case), `uc-sistem` (kotak batas sistem), `uc-asosiasi`
+(garis aktor–use case), `uc-relasi` (panah `<<include>>`/`<<extend>>`).
+
+# Ringkasan Cepat {#sec-ringkasan}
+
+| Kebutuhan | Perintah |
+|---|---|
+| Bab baru | `# JUDUL BAB` |
+| Subbab | `## Subbab` |
+| Gambar dari R | chunk `{r}` + `#| label: fig-x` + `#| fig-cap:` |
+| Tabel dari R | chunk `{r}` + `#| label: tbl-x` + `#| tbl-cap:` |
+| Rujuk gambar/tabel Quarto | `@fig-x` / `@tbl-x` |
+| Persamaan bernomor | `$$ ... $$ {#eq-x}` |
+| Sitasi | `[@kunci]` atau `@kunci` |
+| Daftar pustaka | `::: {#refs}` `:::` |
+| Lampiran | `\lampiran{Judul}` (raw LaTeX) |
+| Gambar landscape | `\begin{sidewaysfigure}...\end{sidewaysfigure}` |
+| Tabel panjang | `kbl(..., longtable=TRUE)` + `kable_styling(latex_options="repeat_header")` |
+| Rujuk objek raw-LaTeX | `\label{x}` ... `\ref{x}` |
+| Halaman baru | `\clearpage` |
+| Catatan petunjuk | `::: {.callout-note}` `:::` (hapus pada naskah final) |

@@ -1,0 +1,41 @@
+Binding: buat_laporan_rstudio
+Title: Laporan Proyek Data Mining (Politeknik Statistika STIS)
+Subtitle: Template laporan proyek CRISP-DM
+Caption: Buat proyek laporan Data Mining
+
+Parameter: judul
+Widget: TextInput
+Label: Judul Proyek
+Default: TULISKAN JUDUL PROYEK ANDA DI SINI
+Position: left
+
+Parameter: mata_kuliah
+Widget: SelectInput
+Label: Mata Kuliah
+Fields: Data Mining, Data Mining dan Big Data
+Default: Data Mining
+Position: left
+
+Parameter: kelompok
+Widget: TextInput
+Label: Kelompok (nomor)
+Default: 1
+Position: left
+
+Parameter: kelas
+Widget: TextInput
+Label: Kelas
+Default: 3SD1
+Position: left
+
+Parameter: anggota
+Widget: TextInput
+Label: Anggota (pisahkan dengan koma/titik koma)
+Default: Nama Anggota 1; Nama Anggota 2; Nama Anggota 3
+Position: right
+
+Parameter: dosen
+Widget: TextInput
+Label: Dosen Pengampu
+Default: Nama Dosen Pengampu
+Position: right

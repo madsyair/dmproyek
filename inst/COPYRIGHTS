@@ -1,0 +1,18 @@
+HAK CIPTA BERKAS YANG DISERTAKAN (BUNDLED FILES)
+=================================================
+
+Kode dan templat dalam paket ini berlisensi MIT (lihat berkas LICENSE),
+dengan pengecualian berkas berikut:
+
+1. inst/template/img/logo_stis.png
+   - Logo dan merek Politeknik Statistika STIS.
+   - Hak cipta: Politeknik Statistika STIS (Badan Pusat Statistik, Republik
+     Indonesia).
+   - BUKAN berlisensi MIT. Disertakan dalam paket ini atas izin institusi,
+     semata-mata untuk dipakai pada templat laporan proyek mahasiswa Program Studi
+     D-IV Komputasi Statistik Politeknik Statistika STIS.
+   - Penggunaan ulang logo di luar konteks tersebut harus seizin
+     Politeknik Statistika STIS.
+
+Seluruh berkas lain dalam paket (kode R, templat Quarto/LaTeX, berkas CSL,
+dokumentasi) berlisensi MIT, hak cipta (c) 2026 Achmad Syahrul Choir.

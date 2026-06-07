@@ -1,0 +1,52 @@
+# PEMAHAMAN DATA
+
+::: {.callout-tip title="Petunjuk Penulisan  -  Pemahaman Data" appearance="simple"}
+Tahap **Data Understanding**: jelaskan sumber dan cara perolehan data, deskripsi
+variabel, eksplorasi awal (statistik ringkas dan visualisasi), serta penilaian
+kualitas data. **Hapus kotak "Petunjuk Penulisan" pada naskah final.**
+:::
+
+## Sumber Data
+
+Jelaskan sumber data (mis. Susenas, PODES, data primer), jumlah observasi, dan unit
+analisis.
+
+## Deskripsi Variabel
+
+@tbl-variabel menyajikan contoh deskripsi variabel yang digunakan.
+
+```{r}
+#| label: tbl-variabel
+#| tbl-cap: "Deskripsi variabel pada data proyek"
+library(kableExtra)
+dv <- data.frame(
+  Variabel = c("usia", "pendidikan", "pengeluaran", "status"),
+  Tipe     = c("numerik", "kategorik", "numerik", "kategorik (target)"),
+  Keterangan = c("usia kepala rumah tangga (tahun)",
+                 "jenjang pendidikan tertinggi",
+                 "pengeluaran per kapita per bulan",
+                 "status kesejahteraan (sejahtera/tidak)")
+)
+kbl(dv, booktabs = TRUE, align = "lll",
+    col.names = c("Variabel", "Tipe", "Keterangan")) |>
+  kable_styling(latex_options = "HOLD_position", font_size = 10)
+```
+
+## Eksplorasi Data Awal
+
+Eksplorasi awal membantu memahami sebaran dan pola data, seperti pada @fig-eda.
+
+```{r}
+#| label: fig-eda
+#| fig-cap: "Sebaran observasi menurut kategori target"
+#| fig-width: 5
+#| fig-height: 3
+kat <- c("Tidak Sejahtera", "Sejahtera")
+nilai <- c(180, 320)
+barplot(nilai, names.arg = kat, ylab = "Jumlah", col = "grey70")
+```
+
+## Kualitas Data
+
+Identifikasi data hilang (*missing*), pencilan, duplikasi, dan ketidakkonsistenan
+yang perlu ditangani pada tahap persiapan data.

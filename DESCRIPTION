@@ -1,0 +1,40 @@
+Package: dmproyek
+Title: Template Quarto Laporan Proyek Data Mining (CRISP-DM) Politeknik
+        Statistika STIS
+Version: 0.1.0
+Authors@R: c(
+    person("Achmad Syahrul", "Choir", role = c("aut", "cre"),
+           email = "madsyair@stis.ac.id"),
+    person("Politeknik Statistika STIS", role = "cph",
+           comment = "pemegang hak cipta logo institusi pada inst/template/img/logo_stis.png, disertakan atas izin"))
+Description: Menyediakan kerangka (template) proyek Quarto untuk penyusunan
+    laporan proyek kelompok mata kuliah Data Mining (Program Studi D-IV
+    Komputasi Statistik) dan Data Mining dan Big Data (Program Studi D-IV
+    Statistika) di Politeknik Statistika STIS. Struktur laporan mengikuti
+    metodologi CRISP-DM (Bab I-VI: Pendahuluan dan Pemahaman Bisnis,
+    Pemahaman Data, Persiapan Data, Pemodelan, Evaluasi, serta Penerapan dan
+    Kesimpulan). Informasi pada sampul berupa nomor kelompok, kelas, dan
+    daftar nama anggota. Mencakup pengaturan format (margin, font Times,
+    penomoran tabel/gambar/persamaan deret tunggal, header daftar), templat
+    proyek RStudio, contoh chunk R, serta gaya kutipan dan daftar pustaka APA
+    edisi ke-7 dengan modifikasi bahasa Indonesia.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Language: id
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1
+Imports: tools
+Suggests: testthat (>= 3.0.0), knitr, rmarkdown, tikzDevice, kableExtra
+Config/testthat/edition: 3
+VignetteBuilder: knitr
+SystemRequirements: Quarto (>= 1.4), XeLaTeX; R packages knitr,
+        rmarkdown, tikzDevice, and kableExtra are required to render
+        the generated report project
+URL: https://github.com/madsyair/dmproyek
+BugReports: https://github.com/madsyair/dmproyek/issues
+NeedsCompilation: no
+Packaged: 2026-06-07 11:53:42 UTC; root
+Author: Achmad Syahrul Choir [aut, cre],
+  Politeknik Statistika STIS [cph] (pemegang hak cipta logo institusi
+    pada inst/template/img/logo_stis.png, disertakan atas izin)
+Maintainer: Achmad Syahrul Choir <madsyair@stis.ac.id>

@@ -1,0 +1,31 @@
+# EVALUASI
+
+::: {.callout-tip title="Petunjuk Penulisan  -  Evaluasi" appearance="simple"}
+Tahap **Evaluation**: sajikan hasil evaluasi model terhadap metrik yang ditetapkan,
+bandingkan antar-model, dan tafsirkan hasilnya terhadap **tujuan bisnis**. Tahap ini
+menilai apakah model layak dilanjutkan ke penerapan. **Hapus kotak "Petunjuk
+Penulisan" pada naskah final.**
+:::
+
+## Hasil Evaluasi
+
+@tbl-evaluasi membandingkan kinerja model berdasarkan metrik uji.
+
+```{r}
+#| label: tbl-evaluasi
+#| tbl-cap: "Perbandingan kinerja model pada data uji"
+library(kableExtra)
+ev <- data.frame(
+  Model = c("Decision Tree", "Random Forest", "SVM"),
+  Akurasi = c(0.81, 0.88, 0.85),
+  F1 = c(0.79, 0.87, 0.84)
+)
+kbl(ev, booktabs = TRUE, align = "lcc",
+    col.names = c("Model", "Akurasi", "F1-score")) |>
+  kable_styling(latex_options = "HOLD_position", font_size = 10)
+```
+
+## Interpretasi terhadap Tujuan Bisnis
+
+Tafsirkan apakah kinerja model telah memenuhi tujuan bisnis dan tujuan data mining
+yang ditetapkan pada Bab I, serta implikasinya bagi pemangku kepentingan.

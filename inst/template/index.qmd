@@ -1,0 +1,152 @@
+---
+---
+
+```{r}
+#| label: setup-global
+#| include: false
+# Pengaturan global untuk seluruh bab (knitr berbagi state antar-include).
+knitr::opts_chunk$set(
+  echo = FALSE, warning = FALSE, message = FALSE, fig.align = "center",
+  fig.width = 5.5, fig.height = 3.4, out.width = "100%"
+)
+options(width = 72)
+
+# Samakan font grafik R dengan teks dokumen (Times New Roman / TeX Gyre Termes)
+# dan dukung simbol LaTeX pada label grafik. Hanya untuk output PDF (xelatex).
+if (knitr::is_latex_output()) {
+  library(tikzDevice)
+  options(
+    tikzDefaultEngine = "xetex",
+    tikzXelatexPackages = c(
+      getOption("tikzXelatexPackages"),
+      "\\setmainfont{TeX Gyre Termes}\n",
+      "\\usepackage{amssymb,amsmath}\n"
+    ),
+    tikzUnicodeMetricPackages = c(
+      getOption("tikzUnicodeMetricPackages"),
+      "\\setmainfont{TeX Gyre Termes}\n"
+    )
+  )
+  knitr::opts_chunk$set(dev = "tikz")
+}
+```
+
+```{=latex}
+% Bagian awal (Kata Pengantar, Ringkasan, Daftar-daftar) bernomor Romawi kecil
+% i, ii, iii, ... dimulai dari KATA PENGANTAR = i (Sampul s.d. Pengesahan tidak
+% diberi nomor tampil).
+\pagenumbering{roman}
+\setcounter{page}{1}
+\pagestyle{plain}
+```
+
+# KATA PENGANTAR {.unnumbered}
+
+::: {.callout-tip title="Petunjuk Penulisan  -  Kata Pengantar" appearance="simple"}
+Kata pengantar berisi ucapan syukur dan terima kasih kepada pihak yang membantu
+penyelesaian proyek (dosen pengampu, asisten, narasumber data), ditulis ringkas dan
+formal, diakhiri tempat/tanggal dan penyebutan kelompok. **Hapus kotak "Petunjuk
+Penulisan" pada naskah final.**
+:::
+
+Puji syukur kami panjatkan ke hadirat Tuhan Yang Maha Esa atas selesainya laporan
+proyek mata kuliah {{MATA_KULIAH}} yang berjudul "{{JUDUL}}". Laporan ini disusun
+mengikuti metodologi CRISP-DM. Kami mengucapkan terima kasih kepada:
+
+1. Bapak/Ibu {{DOSEN}}, selaku dosen pengampu mata kuliah {{MATA_KULIAH}};
+2. rekan-rekan Kelas {{KELAS}} atas kerja sama dan diskusinya; serta
+3. semua pihak yang telah membantu penyelesaian proyek ini.
+
+Kami menyadari laporan ini masih memiliki kekurangan. Oleh karena itu, kritik dan
+saran yang membangun sangat kami harapkan. Semoga laporan ini bermanfaat.
+
+\begin{flushright}
+\begin{tabular}{c}
+Jakarta, [tanggal] {{TAHUN}} \\[1.2cm]
+\textbf{Kelompok {{KELOMPOK}}} \\
+\end{tabular}
+\end{flushright}
+
+# RINGKASAN {.unnumbered}
+
+::: {.callout-tip title="Petunjuk Penulisan  -  Ringkasan" appearance="simple"}
+Ringkasan (1,5 spasi, ~150-250 kata) memuat: tujuan/permasalahan, data dan metode
+(CRISP-DM), hasil utama pemodelan dan evaluasi, serta kesimpulan. Diakhiri 3-6 kata
+kunci. **Hapus kotak "Petunjuk Penulisan" pada naskah final.**
+:::
+
+```{=latex}
+\vspace{1\baselineskip}
+\begin{onehalfspace}
+\setlength{\parindent}{0pt}
+```
+
+Ringkasan berisi gambaran singkat proyek: latar belakang dan tujuan, sumber serta
+karakteristik data, tahapan CRISP-DM yang dijalankan (pemahaman bisnis, pemahaman dan
+persiapan data, pemodelan, evaluasi, hingga rencana penerapan), metode/algoritme yang
+digunakan, hasil utama beserta metrik evaluasinya, dan simpulan ringkas atas
+ketercapaian tujuan proyek.
+
+```{=latex}
+\vspace{0.5\baselineskip}
+\par\noindent
+\hangindent=2.4cm\hangafter=1
+\textbf{Kata Kunci:}\hspace{0.9cm}kata, kunci, tiga, sampai, enam, kata\par
+\end{onehalfspace}
+```
+
+```{=latex}
+\clearpage
+\renewcommand{\contentsname}{DAFTAR ISI}
+\phantomsection
+\addcontentsline{toc}{chapter}{DAFTAR ISI}
+\tableofcontents
+\clearpage
+\renewcommand{\listtablename}{DAFTAR TABEL}
+\phantomsection
+\addcontentsline{toc}{chapter}{DAFTAR TABEL}
+\listoftables
+\clearpage
+\renewcommand{\listfigurename}{DAFTAR GAMBAR}
+\phantomsection
+\addcontentsline{toc}{chapter}{DAFTAR GAMBAR}
+\listoffigures
+\clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{DAFTAR LAMPIRAN}
+\listoflampiran
+\clearpage
+\aktifkanNomorIsi
+\pagenumbering{arabic}
+\setcounter{page}{1}
+% Teks isi (Bab I dst.) diketik 2 spasi. Halaman muka, daftar, dan Daftar Pustaka
+% tetap 1,5 spasi.
+\doublespacing
+```
+
+{{INCLUDE_BAB}}
+
+```{=latex}
+% Daftar Pustaka: 1 spasi di dalam entri, ~1,5 spasi antar entri.
+\singlespacing
+\makeatletter
+\@ifundefined{cslentryspacingunit}{}{\setlength{\cslentryspacingunit}{0.5\baselineskip}}
+\makeatother
+```
+
+# DAFTAR PUSTAKA {.unnumbered}
+
+::: {.callout-tip title="Petunjuk Penulisan  -  Daftar Pustaka" appearance="simple"}
+Daftar Pustaka terisi otomatis dari berkas `referensi.bib` dan hanya memuat sumber yang
+benar-benar dikutip. Format APA 7 (modifikasi Indonesia) melalui `apa-stis-id.csl`.
+**Hapus kotak "Petunjuk Penulisan" pada naskah final.**
+:::
+
+::: {#refs}
+:::
+
+```{=latex}
+\onehalfspacing
+```
+
+{{< include bab/lampiran.qmd >}}

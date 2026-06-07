@@ -1,0 +1,44 @@
+# PENDAHULUAN
+
+::: {.callout-tip title="Petunjuk Penulisan  -  Pendahuluan (Pemahaman Bisnis)" appearance="simple"}
+Bab ini memuat tahap **Pemahaman Bisnis (Business Understanding)** pada CRISP-DM:
+latar belakang masalah, tujuan bisnis, tujuan data mining, ruang lingkup, serta
+sistematika penulisan. **Hapus kotak "Petunjuk Penulisan" pada naskah final.**
+:::
+
+## Latar Belakang
+
+Uraikan konteks dan permasalahan yang melatarbelakangi proyek, didukung data atau
+rujukan @megawati2021. Jelaskan mengapa pendekatan *data mining* relevan untuk menjawab
+permasalahan tersebut.
+
+## Tujuan
+
+Sesuai tahap pemahaman bisnis pada CRISP-DM, tujuan dibedakan menjadi:
+
+1. **Tujuan bisnis** -- hasil yang diharapkan dari sisi pemangku kepentingan
+   (misalnya meningkatkan ketepatan penargetan program).
+2. **Tujuan data mining** -- terjemahan tujuan bisnis menjadi tugas data mining
+   (misalnya membangun model klasifikasi dengan akurasi memadai).
+
+## Ruang Lingkup
+
+Batasi cakupan proyek: data yang digunakan, periode, wilayah, serta teknik yang
+diterapkan.
+
+## Metodologi
+
+Proyek ini mengikuti kerangka **CRISP-DM (*Cross-Industry Standard Process for Data
+Mining*)** yang terdiri atas enam tahap:
+
+1. Pemahaman Bisnis (*Business Understanding*) -- Bab I;
+2. Pemahaman Data (*Data Understanding*) -- Bab II;
+3. Persiapan Data (*Data Preparation*) -- Bab III;
+4. Pemodelan (*Modeling*) -- Bab IV;
+5. Evaluasi (*Evaluation*) -- Bab V;
+6. Penerapan (*Deployment*) -- Bab VI.
+
+## Sistematika Penulisan
+
+Laporan disusun dalam enam bab mengikuti tahapan CRISP-DM di atas, diakhiri Daftar
+Pustaka dan Lampiran.
