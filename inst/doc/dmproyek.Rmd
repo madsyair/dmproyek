@@ -1,0 +1,57 @@
+---
+title: "Panduan Paket dmproyek"
+output:
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{Panduan Paket dmproyek}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>", eval = FALSE)
+```
+
+Paket **dmproyek** menyediakan kerangka (template) proyek
+[Quarto](https://quarto.org/) untuk **laporan proyek kelompok** mata kuliah
+*Data Mining* (Prodi D-IV Komputasi Statistik) dan *Data Mining dan Big Data*
+(Prodi D-IV Statistika) di Politeknik Statistika STIS. Struktur laporan mengikuti
+metodologi **CRISP-DM**.
+
+# Membuat proyek
+
+```{r}
+library(dmproyek)
+
+buat_laporan(
+  path        = "proyek-dm",
+  judul       = "Klasifikasi Status Kesejahteraan Rumah Tangga",
+  mata_kuliah = "Data Mining",            # atau "Data Mining dan Big Data"
+  kelompok    = 3,
+  kelas       = "3SD1",
+  anggota     = c("Nama Anggota 1", "Nama Anggota 2", "Nama Anggota 3"),
+  nim         = c("222311001", "222311002", "222311003"),
+  dosen       = "Nama Dosen Pengampu",
+  render      = TRUE                        # butuh Quarto + XeLaTeX terpasang
+)
+```
+
+Informasi pada sampul (pengganti nama mahasiswa pada skripsi) adalah **nomor
+kelompok**, **kelas**, dan **daftar nama anggota**. Pilihan `mata_kuliah`
+menentukan program studi yang tercetak pada sampul.
+
+# Struktur bab (CRISP-DM)
+
+1. Bab I -- Pendahuluan (Pemahaman Bisnis)
+2. Bab II -- Pemahaman Data
+3. Bab III -- Persiapan Data
+4. Bab IV -- Pemodelan
+5. Bab V -- Evaluasi
+6. Bab VI -- Penerapan dan Kesimpulan
+
+# Merender ke PDF
+
+```{r}
+render_laporan("proyek-dm")   # hasil: proyek-dm/_output/index.pdf
+```

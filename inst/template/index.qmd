@@ -14,20 +14,41 @@ options(width = 72)
 # Samakan font grafik R dengan teks dokumen (Times New Roman / TeX Gyre Termes)
 # dan dukung simbol LaTeX pada label grafik. Hanya untuk output PDF (xelatex).
 if (knitr::is_latex_output()) {
-  library(tikzDevice)
-  options(
-    tikzDefaultEngine = "xetex",
-    tikzXelatexPackages = c(
-      getOption("tikzXelatexPackages"),
-      "\\setmainfont{TeX Gyre Termes}\n",
-      "\\usepackage{amssymb,amsmath}\n"
-    ),
-    tikzUnicodeMetricPackages = c(
-      getOption("tikzUnicodeMetricPackages"),
-      "\\setmainfont{TeX Gyre Termes}\n"
+  # Pakai tikzDevice (font grafik = Times, dukung simbol LaTeX) BILA tersedia dan
+  # cocok dengan versi R yang berjalan. Jika tikz gagal -- misalnya galat
+  # "Graphics API version mismatch" karena paket tikzDevice belum dikompilasi
+  # ulang untuk versi R Anda -- template OTOMATIS beralih ke cairo_pdf agar
+  # dokumen tetap ter-render (grafik memakai font bawaan, bukan Times).
+  # Set Sys.setenv(DMPROYEK_NO_TIKZ = "1") untuk memaksa memakai cairo_pdf.
+  tikz_ok <- !nzchar(Sys.getenv("DMPROYEK_NO_TIKZ")) &&
+    requireNamespace("tikzDevice", quietly = TRUE) &&
+    tryCatch({
+      .uji <- tempfile(fileext = ".tex")
+      tikzDevice::tikz(.uji); grDevices::dev.off(); unlink(.uji)
+      TRUE
+    }, error = function(e) FALSE)
+
+  if (tikz_ok) {
+    options(
+      tikzDefaultEngine = "xetex",
+      tikzXelatexPackages = c(
+        getOption("tikzXelatexPackages"),
+        "\\setmainfont{TeX Gyre Termes}\n",
+        "\\usepackage{amssymb,amsmath}\n"
+      ),
+      tikzUnicodeMetricPackages = c(
+        getOption("tikzUnicodeMetricPackages"),
+        "\\setmainfont{TeX Gyre Termes}\n"
+      )
     )
-  )
-  knitr::opts_chunk$set(dev = "tikz")
+    knitr::opts_chunk$set(dev = "tikz")
+  } else {
+    # Fallback aman (tersedia di base R); grafik tetap muncul dengan font bawaan.
+    knitr::opts_chunk$set(dev = if (isTRUE(capabilities("cairo"))) "cairo_pdf" else "pdf")
+    message("tikzDevice tidak dapat dipakai; memakai dev = cairo_pdf. ",
+            "Untuk grafik berfont Times, pasang ulang tikzDevice dari sumber: ",
+            "install.packages('tikzDevice', type = 'source').")
+  }
 }
 ```
 

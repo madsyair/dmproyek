@@ -34,11 +34,6 @@ Useful links:
 \author{
 \strong{Maintainer}: Achmad Syahrul Choir \email{madsyair@stis.ac.id}
 
-Authors:
-\itemize{
-  \item Achmad Syahrul Choir \email{madsyair@stis.ac.id}
-}
-
 Other contributors:
 \itemize{
   \item Politeknik Statistika STIS (pemegang hak cipta logo institusi pada inst/template/img/logo_stis.png, disertakan atas izin) [copyright holder]
