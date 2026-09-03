@@ -31,6 +31,8 @@ pakai—lengkap dengan sampul, pengaturan format, dan gaya kutipan/daftar pustak
 ```r
 # dari berkas sumber
 install.packages("dmproyek_0.1.0.tar.gz", repos = NULL, type = "source")
+# dari github
+devtools::install_github("madsyair/dmproyek")
 ```
 
 Prasyarat render: **Quarto** (≥ 1.4), **XeLaTeX** (TeX Live/TinyTeX), serta paket R
